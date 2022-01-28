@@ -9,7 +9,8 @@ class GetProductsController {
 
       return res.json({
         status: ResponseStatus.OK,
-        data: products
+        data: products,
+        totalRegisters: products.length
       })
     } catch (error) {
       return res.status(500).json({
