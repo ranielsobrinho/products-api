@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { fabricante } from "./fabricante";
 
 @Entity('produtos')
 export class produtos {
@@ -7,9 +8,6 @@ export class produtos {
 
   @Column()
   nome_produto: string
-
-  @Column()
-  fabricante: string
 
   @Column()
   quantidade_estoque: number
@@ -22,4 +20,10 @@ export class produtos {
 
   @CreateDateColumn()
   updated_at: Date
+
+  @JoinColumn({
+    name: 'fabricante'
+  })
+  @ManyToOne(() => fabricante, (fabricante) => fabricante.produtos)
+  fabricante: fabricante
 }
