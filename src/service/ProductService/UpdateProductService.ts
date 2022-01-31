@@ -1,10 +1,11 @@
 import { getRepository } from "typeorm";
 import { produtos } from "../../domain/entity/produtos";
+import { fabricante } from '../../domain/entity/fabricante'
 
 interface updateRequest {
   id: string
   nome_produto: string
-  fabricante: string
+  fabricante: fabricante
   quantidade_estoque: number
   valor: number
 }
