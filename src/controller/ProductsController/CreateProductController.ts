@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IResponse, ResponseStatus } from "../../utils/service";
 import CreateProductService from "../../service/ProductService/CreateProductService";
+import { ValidationError } from "yup";
 
 class CreateProductController {
   async execute(req: Request, res: Response<IResponse>): Promise<Response<IResponse>> {
@@ -19,7 +20,12 @@ class CreateProductController {
         data: product
       })
     } catch (error) {
-      console.log(error)
+      if (error instanceof ValidationError) {
+        return res.status(400).json({
+          status: ResponseStatus.BAD_REQUEST,
+          errors: error.errors
+        })
+      }
       return res.status(500).json({
         status: ResponseStatus.INTERNAL_SERVER_ERROR,
         message: 'Sorry, something wrong just happened.'
