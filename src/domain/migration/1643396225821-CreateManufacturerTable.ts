@@ -21,7 +21,7 @@ export class CreateManufacturerTable1643396225821 implements MigrationInterface 
                 },
                 {
                     name: 'telefone',
-                    type: 'smallint',
+                    type: 'int',
                     isNullable: true
                 },
                 {
