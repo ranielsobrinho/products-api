@@ -5,7 +5,8 @@ class GetAllProductsService {
   async handle() {
     const repo = getRepository(produtos)
     const products = await repo.find({
-      select: ['id', 'nome_produto', 'fabricante', 'quantidade_estoque', 'valor']
+      select: ['id', 'nome_produto', 'fabricante', 'quantidade_estoque', 'valor'],
+      relations: ['fabricante']
     })
 
     return products
