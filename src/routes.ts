@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { GetProductsController, CreateProductController, UpdateProductController, DeleteProductController, GetOneProductController } from "./controller/ProductsController/";
-import { CreateManufactureController, GetAllManufacturerController, GetOneManufacturerController, UpdateManufacturerController } from "./controller/ManufactureController/";
+import { CreateManufactureController, GetAllManufacturerController, GetOneManufacturerController, UpdateManufacturerController, DeleteManufacturerController } from "./controller/ManufactureController/";
 import validate from "./middlewares/ValidationMiddleware";
 import { manufactureSchema, productSchema } from "./utils/validations/";
 
@@ -16,5 +16,6 @@ routes.post('/manufacturers', validate(manufactureSchema), CreateManufactureCont
 routes.get('/manufacturers', GetAllManufacturerController.execute)
 routes.get('/manufacturers/:id', GetOneManufacturerController.execute)
 routes.put('/manufacturers/:id', validate(manufactureSchema), UpdateManufacturerController.execute)
+routes.delete('/manufacturers/:id', DeleteManufacturerController.execute)
 
 export default routes
